@@ -3,10 +3,21 @@ const csv = require('csv-parser');
 const D3Node = require('d3-node');
 const d3n = new D3Node();
 
-const LICENSE_FILE_PATH = './data/fidelity.csv';
+// get a license file path from a command line argument
+
+let LICENSE_FILE_PATH = process.argv[2];
+if (!LICENSE_FILE_PATH) {
+  console.error('Please provide a path to a license file');
+  process.exit(1);
+}
 
 // Create a dictionary to store the data
 const data = {};
+
+// create the results directory if it doesn't exist
+if (!fs.existsSync('./results')) {
+  fs.mkdirSync('./results');
+}
 
 // Read in the CSV file and store the data in the dictionary
 fs.createReadStream(LICENSE_FILE_PATH)

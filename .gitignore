@@ -1,3 +1,4 @@
 node_modules
-data/*
-results/*
+data/**/*
+!data/example.csv
+results/**/*
